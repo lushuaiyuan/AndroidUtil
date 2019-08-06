@@ -39,4 +39,12 @@ public class Test implements Parcelable {
             return new Test[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "people1='" + people1 + '\'' +
+                ", people2='" + people2 + '\'' +
+                '}';
+    }
 }
