@@ -21,14 +21,14 @@ import butterknife.Unbinder;
  * @Describe
  */
 public abstract class BaseFragment extends Fragment {
-    private Unbinder bind;
+    private Unbinder unbinder;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
         View view = inflater.inflate(getLayoutId(), container, false);
-        bind = ButterKnife.bind(getActivity());
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -42,11 +42,12 @@ public abstract class BaseFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
+        init();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        bind.unbind();
+        unbinder.unbind();
     }
 }

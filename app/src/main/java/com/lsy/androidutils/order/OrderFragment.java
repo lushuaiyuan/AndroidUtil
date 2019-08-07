@@ -1,4 +1,4 @@
-package com.lsy.androidutils.test;
+package com.lsy.androidutils.order;
 
 import android.widget.TextView;
 
@@ -12,17 +12,15 @@ import butterknife.BindView;
  * @create 2019/8/6 23:02
  * @Describe
  */
-public class TestFragment extends BaseFragment {
-    @BindView(R.id.content)
-    TextView tvContent;
+public class OrderFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_home;
+        return R.layout.fragment_order;
     }
 
     @Override
     public void init() {
-        tvContent.setText("测试");
+
     }
 }

@@ -2,10 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/app_color_theme_4"
     android:orientation="vertical">
+
+    <include layout="@layout/topbar" />
+
     <TextView
+        android:background="#FFF"
         android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:text="应用内跳转"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="应用内跳转" />
 </LinearLayout>

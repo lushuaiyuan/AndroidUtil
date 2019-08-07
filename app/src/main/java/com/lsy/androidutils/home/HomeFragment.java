@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.lsy.androidutils.R;
 import com.lsy.androidutils.Test;
 import com.lsy.androidutils.base.BaseFragment;
+import com.lsy.androidutils.utils.Constant;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,8 +21,7 @@ import butterknife.OnClick;
  * @Describe 首页
  */
 public class HomeFragment extends BaseFragment {
-    @BindView(R.id.content)
-    TextView tvContent;
+
 
     @Override
     public int getLayoutId() {
@@ -30,7 +30,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void init() {
-        tvContent.setText("首页");
+
     }
 
 
@@ -40,7 +40,7 @@ public class HomeFragment extends BaseFragment {
 //        ARouter.getInstance().build("/test/activity").navigation(this, 100);
 
         // 2. 跳转并携带参数
-        ARouter.getInstance().build("/test/activity")
+        ARouter.getInstance().build(Constant.URL_TEST)
                 .withLong("key1", 666L)
                 .withString("key2", "888")
                 .withParcelable("key3", new Test("Jack", "Rose"))
