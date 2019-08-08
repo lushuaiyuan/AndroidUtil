@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_color_theme_4"
+    android:background="@color/app_color_theme_2"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -10,6 +10,7 @@
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#F4F4F4"
         android:layout_weight="1" />
 
     <com.lsy.androidutils.view.BottomBar

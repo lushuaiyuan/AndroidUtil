@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00A8E1</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimary">@color/app_color_theme_1</color>
+    <color name="colorPrimaryDark">@color/app_color_theme_2</color>
     <color name="colorAccent">#D81B60</color>
 
     <!-- common -->
@@ -14,7 +14,7 @@
     <color name="app_color_blue_2_pressed">#7F31BDF3</color>
 
     <color name="app_color_theme_1">#EF5362</color> <!-- Grapefruit -->
-    <color name="app_color_theme_2">#FE6D4B</color> <!-- Bittersweet -->
+    <color name="app_color_theme_2">#FF5D5E</color> <!-- Bittersweet -->
     <color name="app_color_theme_3">#FFCF47</color> <!-- Sunflower -->
     <color name="app_color_theme_4">#9FD661</color> <!-- Grass -->
     <color name="app_color_theme_5">#3FD0AD</color> <!-- Mint -->

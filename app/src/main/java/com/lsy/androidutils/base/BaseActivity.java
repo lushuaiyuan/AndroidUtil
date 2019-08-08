@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ARouter.getInstance().inject(this);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        QMUIStatusBarHelper.translucent(this, ContextCompat.getColor(this, R.color.app_color_theme_4));
+        QMUIStatusBarHelper.translucent(this, ContextCompat.getColor(this, R.color.app_color_theme_2));
         init();
     }
 

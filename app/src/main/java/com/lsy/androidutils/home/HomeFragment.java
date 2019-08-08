@@ -1,18 +1,10 @@
 package com.lsy.androidutils.home;
 
-import android.content.Intent;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lsy.androidutils.R;
-import com.lsy.androidutils.Test;
 import com.lsy.androidutils.base.BaseFragment;
 import com.lsy.androidutils.utils.Constant;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -43,7 +35,6 @@ public class HomeFragment extends BaseFragment {
         ARouter.getInstance().build(Constant.URL_TEST)
                 .withLong("key1", 666L)
                 .withString("key2", "888")
-                .withParcelable("key3", new Test("Jack", "Rose"))
                 .navigation(mActivity, 100);
     }
 
