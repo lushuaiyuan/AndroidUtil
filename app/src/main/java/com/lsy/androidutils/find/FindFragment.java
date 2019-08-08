@@ -1,22 +1,18 @@
-package com.lsy.androidutils.order;
-
-import android.widget.TextView;
+package com.lsy.androidutils.find;
 
 import com.lsy.androidutils.R;
 import com.lsy.androidutils.base.BaseFragment;
-
-import butterknife.BindView;
 
 /**
  * @author lsy
  * @create 2019/8/6 23:02
  * @Describe
  */
-public class OrderFragment extends BaseFragment {
+public class FindFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_order;
+        return R.layout.fragment_find;
     }
 
     @Override

@@ -6,17 +6,15 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fl_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#F4F4F4"
-        android:layout_weight="1" />
 
-    <com.lsy.androidutils.view.BottomBar
-        android:id="@+id/bottom_bar"
+    <include
+        android:id="@+id/topbar"
+        layout="@layout/topbar" />
+
+
+    <com.next.easynavigation.view.EasyNavigationBar
+        android:id="@+id/navigationBar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="#FFFFFF" />
+        android:layout_height="match_parent"
+        android:background="#F4F4F4" />
 </LinearLayout>
