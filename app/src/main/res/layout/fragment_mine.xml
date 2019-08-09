@@ -1,35 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/qmui_config_color_background"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_changeSkin"
+    <com.qmuiteam.qmui.widget.QMUIAppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/qmui_config_color_white"
-        android:gravity="center_vertical"
-        android:padding="16dp">
+        android:layout_height="256dp"
+        android:fitsSystemWindows="true">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_setting" />
+        <com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout
+            android:id="@+id/collapsing_topbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="?attr/qmui_topbar_height"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:qmui_collapsedTitleGravity="center"
+            app:qmui_contentScrim="@color/app_color_theme_2"
+            app:qmui_expandedTitleGravity="center_horizontal|bottom"
+            app:qmui_expandedTitleMarginBottom="20dp"
+            app:qmui_statusBarScrim="@color/app_color_theme_4">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="1"
-            android:text="换肤"
-            android:textSize="16sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_right_arrow" />
-    </LinearLayout>
-</LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/common_example"
+                    android:fitsSystemWindows="false"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/qd_show_img_1"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    app:qmui_is_circle="true"
+                    android:src="@color/app_color_theme_2" />
+            </RelativeLayout>
+            <com.qmuiteam.qmui.widget.QMUITopBarLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"></com.qmuiteam.qmui.widget.QMUITopBarLayout>
+
+            <com.qmuiteam.qmui.widget.QMUITopBar
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/qmui_topbar_height"
+                android:fitsSystemWindows="true"
+                app:qmui_layout_collapseMode="pin"
+                app:qmui_topbar_bg_color="@color/qmui_config_color_transparent"
+                app:qmui_topbar_need_separator="false" />
+        </com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout>
+    </com.qmuiteam.qmui.widget.QMUIAppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_changeSkin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/qmui_config_color_white"
+                android:gravity="center_vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_setting" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:text="换肤"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_right_arrow" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

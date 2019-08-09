@@ -1,12 +1,6 @@
 package com.lsy.androidutils;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -18,7 +12,6 @@ import com.lsy.androidutils.message.MessageFragment;
 import com.lsy.androidutils.mine.MineFragment;
 import com.next.easynavigation.constant.Anim;
 import com.next.easynavigation.view.EasyNavigationBar;
-import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import java.util.ArrayList;
 import java.util.List;

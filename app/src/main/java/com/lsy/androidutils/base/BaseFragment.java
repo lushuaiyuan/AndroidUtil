@@ -63,18 +63,14 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract void initData();
 
-    public abstract void initView();
 
     /**
      * 懒加载方法
      */
     private void lazyInitData() {
-        if (isVisibleToUser && isPrepareView) {
-            initView();
-            if (!isInitData) {
+        if (isVisibleToUser && isPrepareView && !isInitData) {
                 isInitData = true;
                 initData();
-            }
         }
     }
 

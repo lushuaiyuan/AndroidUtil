@@ -7,8 +7,11 @@ import android.widget.Toast;
 
 import com.lsy.androidutils.R;
 import com.lsy.androidutils.base.BaseFragment;
+import com.qmuiteam.qmui.widget.QMUICollapsingTopBarLayout;
+import com.qmuiteam.qmui.widget.QMUITopBar;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -17,7 +20,10 @@ import butterknife.OnClick;
  * @Describe 我的
  */
 public class MineFragment extends BaseFragment {
-    private QMUITopBarLayout qmuiTopBarLayout;
+    @BindView(R.id.collapsing_topbar_layout)
+    QMUICollapsingTopBarLayout qmuiCollapsingTopBarLayout;
+    @BindView(R.id.topbar)
+    QMUITopBar qmuiTopBar;
 
     @Override
     public int getLayoutId() {
@@ -26,22 +32,20 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void initView() {
         initTopBar();
     }
 
+
     private void initTopBar() {
-        qmuiTopBarLayout = mActivity.findViewById(R.id.topbar);
-        qmuiTopBarLayout.removeAllLeftViews();
-        qmuiTopBarLayout.removeAllRightViews();
-        qmuiTopBarLayout.setTitle("我的");
-        qmuiTopBarLayout.setTitleGravity(Gravity.CENTER);
-        qmuiTopBarLayout.setSubTitle("");
+        qmuiCollapsingTopBarLayout.setTitle("路远天阔");
+        qmuiTopBar.addRightImageButton(R.mipmap.icon_setting, 0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mActivity, "设置", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     @OnClick(R.id.ll_changeSkin)
     public void viewClick(View view) {

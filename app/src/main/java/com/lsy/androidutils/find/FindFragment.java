@@ -7,13 +7,16 @@ import com.lsy.androidutils.R;
 import com.lsy.androidutils.base.BaseFragment;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
+import butterknife.BindView;
+
 /**
  * @author lsy
  * @create 2019/8/6 23:02
  * @Describe
  */
 public class FindFragment extends BaseFragment {
-    private QMUITopBarLayout qmuiTopBarLayout;
+    @BindView(R.id.topbar)
+    QMUITopBarLayout qmuiTopBarLayout;
 
     @Override
     public int getLayoutId() {
@@ -22,21 +25,12 @@ public class FindFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
-    }
-
-    @Override
-    public void initView() {
         initTopBar();
     }
 
     private void initTopBar() {
         Log.e("FindFragment----", "initTopBar()");
-        qmuiTopBarLayout = mActivity.findViewById(R.id.topbar);
-        qmuiTopBarLayout.removeAllLeftViews();
-        qmuiTopBarLayout.removeAllRightViews();
         qmuiTopBarLayout.setTitle("发现好货");
         qmuiTopBarLayout.setTitleGravity(Gravity.CENTER);
-        qmuiTopBarLayout.setSubTitle("");
     }
 }
