@@ -1,7 +1,11 @@
 package com.lsy.androidutils.find;
 
+import android.util.Log;
+import android.view.Gravity;
+
 import com.lsy.androidutils.R;
 import com.lsy.androidutils.base.BaseFragment;
+import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 /**
  * @author lsy
@@ -9,6 +13,7 @@ import com.lsy.androidutils.base.BaseFragment;
  * @Describe
  */
 public class FindFragment extends BaseFragment {
+    private QMUITopBarLayout qmuiTopBarLayout;
 
     @Override
     public int getLayoutId() {
@@ -16,7 +21,22 @@ public class FindFragment extends BaseFragment {
     }
 
     @Override
-    public void init() {
+    public void initData() {
 
+    }
+
+    @Override
+    public void initView() {
+        initTopBar();
+    }
+
+    private void initTopBar() {
+        Log.e("FindFragment----", "initTopBar()");
+        qmuiTopBarLayout = mActivity.findViewById(R.id.topbar);
+        qmuiTopBarLayout.removeAllLeftViews();
+        qmuiTopBarLayout.removeAllRightViews();
+        qmuiTopBarLayout.setTitle("发现好货");
+        qmuiTopBarLayout.setTitleGravity(Gravity.CENTER);
+        qmuiTopBarLayout.setSubTitle("");
     }
 }

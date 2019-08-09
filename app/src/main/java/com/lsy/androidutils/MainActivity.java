@@ -26,9 +26,7 @@ import java.util.List;
 import butterknife.BindView;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
-    @BindView(R.id.topbar)
-    QMUITopBarLayout topBar;
+public class MainActivity extends BaseActivity {
     @BindView(R.id.navigationBar)
     EasyNavigationBar navigationBar;
 
@@ -48,7 +46,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void init() {
-        initTopBar();
         initBottomBar();
     }
 
@@ -65,7 +62,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
                     public boolean onTabClickEvent(View view, int position) {
-                        topBar.setTitle(tabText[position]);
                         return false;
                     }
                 })
@@ -90,44 +86,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        navigationBar.clearAllMsgPoint();//移除所有的消息
     }
 
-    private void initTopBar() {
-        topBar.setBackgroundColor(ContextCompat.getColor(this, R.color.app_color_theme_2));
-        topBar.setTitleGravity(Gravity.LEFT);
-        topBar.setTitle("收件箱");
-        topBar.setSubTitle("lsy_itsports@163.com");
-        topBar.addLeftImageButton(R.mipmap.icon_list, 0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "侧边栏", Toast.LENGTH_SHORT).show();
-            }
-        });
-        View view = LayoutInflater.from(this).inflate(R.layout.view_home_right, null);
-        ImageButton ibFilter = view.findViewById(R.id.ib_filter);
-        ibFilter.setOnClickListener(this);
-        ImageButton ibSearch = view.findViewById(R.id.ib_search);
-        ibSearch.setOnClickListener(this);
-        ImageButton ibAdd = view.findViewById(R.id.ib_add);
-        ibAdd.setOnClickListener(this);
-        topBar.addRightView(view,R.id.home_right);
-    }
-
     public EasyNavigationBar getNavigationBar() {
         return navigationBar;
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ib_add:
-                Toast.makeText(MainActivity.this, "添加", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.ib_filter:
-                Toast.makeText(MainActivity.this, "过滤", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.ib_search:
-                Toast.makeText(MainActivity.this, "查询", Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 }
 
