@@ -1,5 +1,6 @@
 package com.lsy.module_home;
 
+import android.net.Uri;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,9 +13,19 @@ import androidx.core.content.ContextCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lsy.lib_base.bean.EventBusBean;
+import com.lsy.lib_base.data.EvenBusMsg;
 import com.lsy.lib_base.utils.RouterUtils;
 import com.lsy.lib_base.base.BaseFragment;
+import com.lsy.lib_base.utils.UIUtils;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,12 +39,23 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public int getLayoutId() {
+        EventBus.getDefault().register(this);
         return R.layout.fragment_home;
     }
 
     @Override
+    public void onDestroyView() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroyView();
+    }
+
+    @Override
     public void initData() {
+        initView();
         initTopBar();
+    }
+
+    private void initView() {
     }
 
 
@@ -61,17 +83,55 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
-    @OnClick(R2.id.btn)
+    @OnClick({R2.id.btn_goto_login, R2.id.btn_eventbus, R2.id.btn_uri, R2.id.oldVersionAnim, R2.id.newVersionAnim, R2.id.navByUrl, R2.id.interceptor, R2.id.interceptor1, R2.id.interceptor2, R2.id.autoInject
+            , R2.id.btn_use_other_module, R2.id.btn_use_other_module_by_name, R2.id.btn_use_other_module_by_type, R2.id.failNav})
     public void viewClick(View view) {
-        // 1. 应用内简单的跳转(通过URL跳转在'进阶用法'中)
-//        ARouter.getInstance().build(Constant.URL_TEST).navigation(mActivity, 100);
+        if (view.getId() == R.id.btn_goto_login) {   //登录（跨模块跳转Activity）
+            ARouter.getInstance().build(RouterUtils.ME_LOGIN).navigation();
+        } else if (view.getId() == R.id.btn_eventbus) {
+            EventBusBean eventBusBean = new EventBusBean();
+            eventBusBean.setProject("android");
+            eventBusBean.setNum(3);
+            ARouter.getInstance().build(RouterUtils.ME_EVENTBUS)
+                    .withString("name", "lsy")
+                    .withInt("age", 25)
+                    .withParcelable("eventbus", eventBusBean)
+                    .navigation();
+        } else if (view.getId() == R.id.btn_uri) {
+            EventBusBean eventBusBean = new EventBusBean();
+            eventBusBean.setProject("android");
+            eventBusBean.setNum(3);
 
+            Uri testUriMix = Uri.parse("arouter://com.lsy/me/main/EventBus");
+            ARouter.getInstance().build(testUriMix)
+                    .withString("name", "haungxiaoguo")
+                    .withLong("age", 25)
+                    .withParcelable("eventbus", eventBusBean)
+                    .navigation();
+        } else if (view.getId() == R.id.oldVersionAnim) {
 
-        // 2. 跳转并携带参数
-        ARouter.getInstance().build(RouterUtils.URL_TEST)
-                .withLong("key1", 666L)
-                .withString("key2", "888")
-                .navigation(mActivity, 100);
+        } else if (view.getId() == R.id.newVersionAnim) {
+
+        } else if (view.getId() == R.id.navByUrl) {
+
+        } else if (view.getId() == R.id.interceptor) {
+
+        } else if (view.getId() == R.id.interceptor1) {
+
+        } else if (view.getId() == R.id.interceptor2) {
+
+        } else if (view.getId() == R.id.autoInject) {
+
+        } else if (view.getId() == R.id.btn_use_other_module) {
+
+        } else if (view.getId() == R.id.btn_use_other_module_by_name) {
+
+        } else if (view.getId() == R.id.btn_use_other_module_by_type) {
+
+        } else if (view.getId() == R.id.failNav) {
+
+        }
+
 
     }
 
@@ -87,5 +147,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         if (view.getId() == R.id.ib_search) {
             Toast.makeText(mActivity, "查询", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EvenBusMsg evenBusMsg) {
+        UIUtils.ToastMsg(evenBusMsg.toString());
     }
 }

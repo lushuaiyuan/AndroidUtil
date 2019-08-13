@@ -13,4 +13,5 @@ public class RouterUtils {
     public static final String URL_TEST = "/com/TestActivity";
     //跳转到登录页面
     public static final String ME_LOGIN = "/me/main/login";
+    public static final String ME_EVENTBUS = "/me/main/EventBus";
 }
