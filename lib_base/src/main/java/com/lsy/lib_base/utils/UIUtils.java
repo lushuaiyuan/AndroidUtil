@@ -25,7 +25,7 @@ public class UIUtils {
      *
      * @param msg
      */
-    public static void ToastMsg(String msg) {
+    public static void showToast(String msg) {
         Toast.makeText(App.getInstance(), msg, Toast.LENGTH_SHORT).show();
     }
 }

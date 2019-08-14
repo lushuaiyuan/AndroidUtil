@@ -12,6 +12,11 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.EventBusActivity" />
+        <activity android:name=".view.TestActivity" />
+        <activity android:name=".view.WebViewActivity" />
+        <activity android:name=".view.TestActivity2" />
+        <activity android:name=".view.Test3Activity" />
+        <activity android:name=".view.InjectActivity" />
     </application>
 
 </manifest>

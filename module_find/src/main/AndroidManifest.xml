@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.lsy.module_find.MainActivity">
         </activity>
+        <activity android:name=".view.ForResultActivity" />
+        <activity android:name=".view.InterceptorActivity" />
     </application>
 
 </manifest>

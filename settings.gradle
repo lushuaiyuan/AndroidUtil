@@ -1,2 +1,2 @@
-include ':app', ':lib_base', ':module_home', ':module_find', ':module_message', ':module_me', ':lib_icon'
+include ':app', ':lib_base', ':module_home', ':module_find', ':module_message', ':module_me', ':lib_icon', ':lib_net'
 

@@ -48,7 +48,7 @@ public class MineFragment extends BaseFragment {
     @OnClick(R2.id.ll_changeSkin)
     public void viewClick(View view) {
         if (view.getId() == R.id.ll_changeSkin) {
-            UIUtils.ToastMsg("设置");
+            UIUtils.showToast("设置");
         }
     }
 }
