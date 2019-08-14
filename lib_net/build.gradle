@@ -25,4 +25,6 @@ android {
 
 dependencies {
     api 'com.google.code.gson:gson:2.8.5'
+    api 'com.squareup.retrofit2:retrofit:2.6.1'
+    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 }
