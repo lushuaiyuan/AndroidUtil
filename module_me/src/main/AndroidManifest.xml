@@ -17,6 +17,7 @@
         <activity android:name=".view.TestActivity2" />
         <activity android:name=".view.Test3Activity" />
         <activity android:name=".view.InjectActivity" />
+        <activity android:name=".view.SettingActivity" />
     </application>
 
 </manifest>

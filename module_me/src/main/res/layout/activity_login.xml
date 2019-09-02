@@ -12,37 +12,38 @@
         android:fitsSystemWindows="true">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="我是登录页面，在“我的”模块下" />
-
-        <Button
-            android:id="@+id/btn_forResult"
+        <EditText
+            android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="跳转ForResult"
-            android:textAllCaps="false" />
+            android:padding="16dp" />
 
-        <Button
-            android:id="@+id/interceptor"
+        <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_forResult"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:text="拦截器操作（直接通过的情况）" />
+            android:layout_below="@id/et_username"
+            android:layout_margin="20dp"
+            android:padding="16dp" />
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/et_password"
+            android:layout_margin="20dp"
+            android:text="登录" />
+
 
         <TextView
             android:id="@+id/path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/interceptor"
+            android:layout_below="@id/btn_login"
             android:layout_centerHorizontal="true"
-            android:text="登录完成后要跳转的路径" />
+            android:layout_margin="20dp" />
 
     </RelativeLayout>
 

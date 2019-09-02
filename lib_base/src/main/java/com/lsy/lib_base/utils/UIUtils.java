@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.widget.Toast;
 
-import com.lsy.lib_base.App;
+import com.lsy.lib_base.RouterApplication;
 
 public class UIUtils {
     /**
@@ -26,6 +26,6 @@ public class UIUtils {
      * @param msg
      */
     public static void showToast(String msg) {
-        Toast.makeText(App.getInstance(), msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(RouterApplication.getmContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

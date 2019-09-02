@@ -1,5 +1,6 @@
 package com.lsy.androidutil;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.core.content.ContextCompat;
@@ -21,6 +22,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseActivity {
     @BindView(R.id.navigationBar)
     EasyNavigationBar navigationBar;
+    private static final String TAG = "MainActivity";
 
     private String[] tabText = {"首页", "发现", "消息", "我"};
     //未选中icon
@@ -39,6 +41,7 @@ public class MainActivity extends BaseActivity {
     public void init() {
         initBottomBar();
     }
+
     private void initBottomBar() {
         fragments.add(new HomeFragment());
         fragments.add(new FindFragment());
@@ -52,6 +55,7 @@ public class MainActivity extends BaseActivity {
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
                     public boolean onTabClickEvent(View view, int position) {
+                        Log.e(TAG, "onTabClickEvent: position-----" + position);
                         return false;
                     }
                 })

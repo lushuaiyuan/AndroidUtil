@@ -8,6 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.heima.easysp.SharedPreferencesUtils;
+import com.lsy.lib_base.RouterApplication;
 import com.lsy.lib_base.utils.RouterUtils;
 
 /**
@@ -20,9 +22,14 @@ public class MyDataInterceptor implements IInterceptor {
     @Override
     public void process(Postcard postcard, InterceptorCallback callback) {
         if (postcard.getGroup().equals("needLogin")) {
-            Log.e("lsy", "需要去登陆");
-            //直接执行
-//           callback.onContinue(postcard);
+            //已经处于登录状态
+            if (SharedPreferencesUtils.init(RouterApplication.getmContext()).getStringSet("cookie").size()>0) {//不需要登录
+                callback.onContinue(postcard);//直接执行
+            } else {//需要登录
+                Log.e("lsy", "需要去登陆");
+                ARouter.getInstance().build(RouterUtils.ME_LOGIN)
+                        .withString("path", postcard.getPath()).navigation();
+            }
 
             //直接拦截,走onLost方法
 //           callback.onInterrupt(null);
@@ -31,14 +38,14 @@ public class MyDataInterceptor implements IInterceptor {
 //            postcard.withString("extra", "我是在拦截器中附加的参数");
 //            callback.onContinue(postcard);
 
-            callback.onInterrupt(null);
-
-            Log.e("拦截的地址----------", postcard.getPath());
-            Log.e("拦截的地址分组----------", postcard.getGroup());
-            ARouter.getInstance().build(RouterUtils.ME_LOGIN)
-                    .withString("path", postcard.getPath()).navigation();
+//            callback.onInterrupt(null);
+//
+//            Log.e("拦截的地址----------", postcard.getPath());
+//            Log.e("拦截的地址分组----------", postcard.getGroup());
+//            ARouter.getInstance().build(RouterUtils.ME_LOGIN)
+//                    .withString("path", postcard.getPath()).navigation();
         } else {
-            postcard.withString("extra", "我是在拦截器中附加的参数，拦截的地址为：" + postcard.getPath());
+//            postcard.withString("path", "我是在拦截器中附加的参数，拦截的地址为：" + postcard.getPath());
 
             callback.onContinue(postcard);
         }

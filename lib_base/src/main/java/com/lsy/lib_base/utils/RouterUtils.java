@@ -7,8 +7,8 @@ public class RouterUtils {
     public static final String FIND_FRAGMENT_MAIN = "/find/main";
     public static final String FIND_SERVICE = "/find/service";
 
-    public static final String FIND_FORESULT = "/find/main/ForResult";
-    public static final String FIND_INTERCEPTOR = "/find/main/Interceptor";
+//    public static final String FIND_FORESULT = "/find/main/ForResult";
+//    public static final String FIND_INTERCEPTOR = "/find/main/Interceptor";
 
     //获得Message模块fragment
     public static final String MESSAGE_FRAGMENT_MAIN = "/message/main";
@@ -22,6 +22,7 @@ public class RouterUtils {
     public static final String ME_WEBVIEW = "/me/main/WebView";
     public static final String ME_TEST2 = "/me/main/Test2";
     public static final String ME_INJECT = "/me/main/Inject";
+    public static final String ME_SETTING = "/needLogin/me/Setting";//设置
 
 
     public static final String NEEDLOGIN_TEST3 = "/needLogin/main/Test3";

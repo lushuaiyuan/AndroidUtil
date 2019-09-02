@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.heima.easysp.SharedPreferencesUtils;
 import com.lsy.lib_base.base.BaseFragment;
 import com.lsy.lib_base.utils.RouterUtils;
 import com.lsy.lib_base.utils.UIUtils;
@@ -17,7 +19,7 @@ import butterknife.OnClick;
  * 我的模块
  */
 @Route(path = RouterUtils.ME_FRAGMENT_MAIN)
-public class MineFragment extends BaseFragment {
+public class MineFragment extends BaseFragment implements View.OnClickListener {
     @BindView(R2.id.collapsing_topbar_layout)
     QMUICollapsingTopBarLayout qmuiCollapsingTopBarLayout;
     @BindView(R2.id.topbar)
@@ -35,11 +37,17 @@ public class MineFragment extends BaseFragment {
 
 
     private void initTopBar() {
-        qmuiCollapsingTopBarLayout.setTitle("路远天阔");
+        if (SharedPreferencesUtils.init(mActivity).getStringSet("cookie").size() > 0) {
+            qmuiCollapsingTopBarLayout.setTitle(SharedPreferencesUtils.init(mActivity).getString("nickName"));
+        } else {
+            qmuiCollapsingTopBarLayout.setTitle("注册/登录>");
+            qmuiCollapsingTopBarLayout.setOnClickListener(this);
+        }
         qmuiTopBar.addRightImageButton(R.mipmap.icon_setting, 0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mActivity, "设置", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build(RouterUtils.ME_SETTING)
+                        .navigation();
             }
         });
     }
@@ -50,5 +58,10 @@ public class MineFragment extends BaseFragment {
         if (view.getId() == R.id.ll_changeSkin) {
             UIUtils.showToast("设置");
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        ARouter.getInstance().build(RouterUtils.ME_LOGIN).navigation();
     }
 }

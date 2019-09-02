@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,15 +14,24 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.heima.easysp.SharedPreferencesUtils;
+import com.lsy.lib_base.RouterApplication;
 import com.lsy.lib_base.base.BaseActivity;
+import com.lsy.lib_base.bean.LoginBean;
+import com.lsy.lib_base.bean.Optional;
 import com.lsy.lib_base.utils.RouterUtils;
 import com.lsy.lib_base.utils.UIUtils;
+import com.lsy.lib_net.NetWorkManager;
+import com.lsy.lib_net.exception.ApiException;
+import com.lsy.lib_net.response.ResponseTransformer;
+import com.lsy.lib_net.schedulers.SchedulerProvider;
 import com.lsy.module_me.R;
 import com.lsy.module_me.R2;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.functions.Consumer;
 
 /**
  * 登录模块
@@ -30,10 +40,11 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity {
     @BindView(R2.id.topbar)
     QMUITopBarLayout qmuiTopBarLayout;
-    @BindView(R2.id.btn_forResult)
-    Button mBtnForResult;
-    @BindView(R2.id.interceptor)
-    Button mBtnInterceptor;
+    @BindView(R2.id.et_username)
+    EditText etUserName;
+    @BindView(R2.id.et_password)
+    EditText etPassword;
+
     @BindView(R2.id.path)
     TextView mTvPath;
 
@@ -54,56 +65,36 @@ public class LoginActivity extends BaseActivity {
             }
         });
         mTvPath.setText(loginBackPath);
-
     }
 
-    @OnClick({R2.id.btn_forResult, R2.id.interceptor})
+    @OnClick({R2.id.btn_login})
     public void viewClick(View view) {
-        if (view.getId() == R.id.btn_forResult) {
-            ARouter.getInstance().build(RouterUtils.FIND_FORESULT).navigation(this, 666);
-        } else if (view.getId() == R.id.interceptor) {
-            /**
-             * 路由拦截
-             */
-            ARouter.getInstance()
-                    .build(RouterUtils.FIND_INTERCEPTOR)
-                    .navigation(this, new NavCallback() {
+        if (view.getId() == R.id.btn_login) {
+            NetWorkManager.getApiService().login(etUserName.getText().toString(), etPassword.getText().toString())
+                    .compose(ResponseTransformer.<LoginBean>handleResult())
+                    .compose(SchedulerProvider.getInstance().<Optional<LoginBean>>applySchedulers())
+                    .subscribe(new Consumer<Optional<LoginBean>>() {
                         @Override
-                        public void onFound(Postcard postcard) {
-                            super.onFound(postcard);
-                            //路由目标被发现时调用
-                            Log.e("lsy", "发现了");
+                        public void accept(Optional<LoginBean> loginBean) throws Exception {
+                            SharedPreferencesUtils.init(RouterApplication.getmContext()).put("nickName", loginBean.getIncludeNull().getNickname());
+                            //登录成功之后继续跳转到登录之前请求的页面
+                            if (loginBackPath != null && loginBackPath != "") {
+                                ARouter.getInstance().build(loginBackPath).navigation();
+                            }
+                            LoginActivity.this.finish();
                         }
-
+                    }, new Consumer<Throwable>() {
                         @Override
-                        public void onLost(Postcard postcard) {
-                            super.onLost(postcard);
-                            //路由被丢失时调用
-                            Log.e("lsy", "丢失了");
-                        }
-
-                        @Override
-                        public void onArrival(Postcard postcard) {
-                            //路由到达之后调用
-                            Log.e("lsy", "到达了");
-                        }
-
-                        @Override
-                        public void onInterrupt(Postcard postcard) {
-                            super.onInterrupt(postcard);
-                            //路由被拦截时调用
-                            Log.e("lsy", "拦截了");
+                        public void accept(Throwable throwable) throws Exception {
+                            if (throwable instanceof ApiException) {
+                                UIUtils.showToast(((ApiException) throwable).getDisplayMessage());
+                            } else {
+                                UIUtils.showToast(throwable.getMessage());
+                            }
                         }
                     });
+
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 666 && resultCode == 999) {
-            String name = data.getStringExtra("name");
-            UIUtils.showToast(name + ",resultCode===>" + resultCode);
-        }
-    }
 }
