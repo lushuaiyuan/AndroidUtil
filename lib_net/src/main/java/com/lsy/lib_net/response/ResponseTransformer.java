@@ -2,13 +2,12 @@ package com.lsy.lib_net.response;
 
 
 import com.lsy.lib_base.bean.Optional;
-import com.lsy.lib_net.exception.ApiException;
-import com.lsy.lib_net.exception.CustomException;
+import com.lsy.lib_base.exception.ApiException;
+import com.lsy.lib_base.exception.CustomException;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
-import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
 public class ResponseTransformer {

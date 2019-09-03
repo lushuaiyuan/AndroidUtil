@@ -1,4 +1,4 @@
-package com.lsy.lib_net.exception;
+package com.lsy.lib_base.exception;
 
 import com.google.gson.JsonParseException;
 
