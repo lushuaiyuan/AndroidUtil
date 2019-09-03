@@ -1,7 +1,6 @@
 package com.lsy.module_me.presenter;
 
 import com.lsy.lib_base.base.BasePresenter;
-import com.lsy.lib_base.base.BaseView;
 import com.lsy.lib_base.bean.LogOutBean;
 import com.lsy.lib_base.bean.Optional;
 import com.lsy.lib_net.response.ResponseTransformer;
@@ -26,6 +25,7 @@ public class SettingPresenter extends BasePresenter<SettingContract.View> implem
         mView.showLoading();
         model.logOut().compose(ResponseTransformer.<LogOutBean>handleResult())
                 .compose(SchedulerProvider.getInstance().<Optional<LogOutBean>>applySchedulers())
+                .as(mView.<Optional<LogOutBean>>bindAutoDispose())
                 .subscribe(new Consumer<Optional<LogOutBean>>() {
                     @Override
                     public void accept(Optional<LogOutBean> logOutBeanOptional) throws Exception {

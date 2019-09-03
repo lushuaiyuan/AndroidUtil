@@ -16,8 +16,6 @@ import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.HashMap;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 

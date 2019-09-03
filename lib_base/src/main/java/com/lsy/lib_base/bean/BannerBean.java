@@ -1,5 +1,8 @@
 package com.lsy.lib_base.bean;
 
+/**
+ * 轮播实体
+ */
 public class BannerBean {
 
     /**

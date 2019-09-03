@@ -1,9 +1,11 @@
-package com.lsy.module_home;
+package com.lsy.module_home.view;
 
 
 import androidx.fragment.app.FragmentManager;
 
 import com.lsy.lib_base.base.BaseActivity;
+import com.lsy.module_home.R;
+import com.lsy.module_home.view.HomeFragment;
 
 
 public class MainActivity extends BaseActivity {

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.lsy.lib_base.base.BaseActivity;
 import com.lsy.module_find.FindFragment;
-import com.lsy.module_home.HomeFragment;
+import com.lsy.module_home.view.HomeFragment;
 import com.lsy.module_me.MineFragment;
 import com.lsy.module_message.MessageFragment;
 import com.next.easynavigation.constant.Anim;

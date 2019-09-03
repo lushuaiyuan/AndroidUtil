@@ -12,24 +12,15 @@ import com.lsy.lib_base.RouterApplication;
 import com.lsy.lib_base.base.BaseMvpActivity;
 import com.lsy.lib_base.bean.LoginBean;
 import com.lsy.lib_base.bean.Optional;
-import com.lsy.lib_base.utils.ProgressDialog;
 import com.lsy.lib_base.utils.RouterUtils;
-import com.lsy.lib_base.utils.UIUtils;
-import com.lsy.lib_net.NetWorkManager;
-import com.lsy.lib_base.exception.ApiException;
-import com.lsy.lib_net.response.ResponseTransformer;
-import com.lsy.lib_net.schedulers.SchedulerProvider;
 import com.lsy.module_me.R;
 import com.lsy.module_me.R2;
 import com.lsy.module_me.contract.LoginContract;
 import com.lsy.module_me.presenter.LoginPresenter;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
-import com.qmuiteam.qmui.widget.dialog.QMUIDialog;
-import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 
 /**
  * 登录模块

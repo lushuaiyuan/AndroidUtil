@@ -6,17 +6,11 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.heima.easysp.SharedPreferencesUtils;
 import com.lsy.lib_base.RouterApplication;
-import com.lsy.lib_base.base.BaseActivity;
 import com.lsy.lib_base.base.BaseMvpActivity;
-import com.lsy.lib_base.base.BaseView;
 import com.lsy.lib_base.bean.LogOutBean;
 import com.lsy.lib_base.bean.Optional;
 import com.lsy.lib_base.utils.RouterUtils;
 import com.lsy.lib_base.utils.UIUtils;
-import com.lsy.lib_net.NetWorkManager;
-import com.lsy.lib_base.exception.ApiException;
-import com.lsy.lib_net.response.ResponseTransformer;
-import com.lsy.lib_net.schedulers.SchedulerProvider;
 import com.lsy.module_me.R;
 import com.lsy.module_me.R2;
 import com.lsy.module_me.contract.SettingContract;
@@ -27,7 +21,6 @@ import com.qmuiteam.qmui.widget.dialog.QMUIDialogAction;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.functions.Consumer;
 
 @Route(path = RouterUtils.ME_SETTING)
 public class SettingActivity extends BaseMvpActivity<SettingPresenter> implements SettingContract.View {

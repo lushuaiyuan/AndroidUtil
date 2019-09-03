@@ -14,16 +14,15 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 
 import com.alibaba.android.arouter.facade.Postcard;
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.lsy.lib_base.base.BaseFragment;
 import com.lsy.lib_base.bean.EventBusBean;
 import com.lsy.lib_base.data.EvenBusMsg;
 import com.lsy.lib_base.data.JavaBean;
 import com.lsy.lib_base.provider.IFindModuleService;
 import com.lsy.lib_base.router_service.ModuleRouteService;
 import com.lsy.lib_base.utils.RouterUtils;
-import com.lsy.lib_base.base.BaseFragment;
 import com.lsy.lib_base.utils.UIUtils;
 import com.qmuiteam.qmui.widget.QMUITopBarLayout;
 
@@ -41,15 +40,14 @@ import butterknife.OnClick;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
-@Route(path = RouterUtils.HOME_FRAGMENT_MAIN)
-public class HomeFragment extends BaseFragment implements View.OnClickListener {
+public class HomeFragmentTest extends BaseFragment implements View.OnClickListener {
     @BindView(R2.id.topbar)
     QMUITopBarLayout qmuiTopBarLayout;
 
     @Override
     public int getLayoutId() {
         EventBus.getDefault().register(this);
-        return R.layout.fragment_home;
+        return R.layout.fragment_home_test;
     }
 
     @Override
