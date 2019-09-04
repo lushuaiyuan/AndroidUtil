@@ -4,6 +4,7 @@ package com.lsy.module_home.contract;
 import com.lsy.lib_base.base.BaseView;
 import com.lsy.lib_base.bean.ArticleBean;
 import com.lsy.lib_base.bean.BannerBean;
+import com.lsy.lib_base.bean.HomeBean;
 import com.lsy.lib_base.bean.Optional;
 import com.lsy.lib_net.response.ResponseData;
 import com.lsy.lib_base.bean.FriendBean;
@@ -44,25 +45,38 @@ public interface HomeContract {
         Observable<ResponseData<List<FriendBean>>> friendList();
 
 
+        /**
+         * 置顶文章
+         *
+         * @return
+         */
+        Observable<ResponseData<List<ArticleBean.Article>>> topArticleList();
     }
 
     interface View extends BaseView {
-        void onSuccess1(Optional<List<BannerBean>> bannerResponseData);
+        void onSuccess(Optional<HomeBean> homeBeanResponseData);
+
+//        void onSuccess1(Optional<List<BannerBean>> bannerResponseData);
 
         void onSuccess2(Optional<ArticleBean> articleResponseData);
 
-        void onSuccess3(Optional<List<HotkeyBean>> hotKeyResponseData);
+//        void onSuccess3(Optional<List<HotkeyBean>> hotKeyResponseData);
+//
+//        void onSuccess4(Optional<List<FriendBean>> friendResponseData);
+//
+//        void onSuccess5(Optional<List<ArticleBean.Article>> topArticleResponseData);
 
-        void onSuccess4(Optional<List<FriendBean>> friendResponseData);
     }
 
     interface Presenter {
-        void bannerList();
+//        void bannerList();
 
         void articleList(int pageIndex);
 
-        void hotKeyList();
-
-        void friendList();
+//        void hotKeyList();
+//
+//        void friendList();
+//
+        void getHomeData();
     }
 }

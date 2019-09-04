@@ -17,6 +17,7 @@ import com.lsy.lib_base.base.BaseMvpFragment;
 import com.lsy.lib_base.bean.ArticleBean;
 import com.lsy.lib_base.bean.BannerBean;
 import com.lsy.lib_base.bean.FriendBean;
+import com.lsy.lib_base.bean.HomeBean;
 import com.lsy.lib_base.bean.HotkeyBean;
 import com.lsy.lib_base.bean.Optional;
 import com.lsy.lib_base.utils.GlideImageLoader;
@@ -51,21 +52,23 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
     RecyclerView mRecycleView;
 
     private ArticleAdapter articleAdapter;
-    List<ArticleBean.Article> datas = new ArrayList<>();
+    private List<ArticleBean.Article> datas = new ArrayList<>();//文章数据
+    private List<ArticleBean.Article> topArticles = new ArrayList<>();//置顶的文章数据
+    private List<HotkeyBean> hotkeyBeans = new ArrayList<>();   //搜索热词
+    private List<FriendBean> friendBeans = new ArrayList<>();   //常用网址
+    private int pageIndex = 0;
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_home;
     }
 
-    private int pageIndex = 0;
-
     @Override
     public void initData() {
         mPresenter = new HomePresenter();
         mPresenter.attachView(this);
         initTopBar();
-        mPresenter.bannerList();
+        mPresenter.getHomeData();
         mSmartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -128,9 +131,11 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         endRefresh(mSmartRefreshLayout);
     }
 
+
     @Override
-    public void onSuccess1(Optional<List<BannerBean>> bannerResponseData) {
-        List<BannerBean> includeNull = bannerResponseData.getIncludeNull();
+    public void onSuccess(Optional<HomeBean> homeBeanResponseData) {
+        //轮播显示
+        List<BannerBean> includeNull = homeBeanResponseData.getIncludeNull().getBanners();
         List<String> images = new ArrayList<>();
         for (int i = 0; i < includeNull.size(); i++) {
             images.add(includeNull.get(i).getImagePath());
@@ -143,8 +148,19 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         mBanner.start();
         showLoading();
         mPresenter.articleList(pageIndex);
-    }
 
+        //置顶文章列表
+        topArticles = homeBeanResponseData.getIncludeNull().getTopArticles();
+
+        //搜索热词
+        hotkeyBeans = homeBeanResponseData.getIncludeNull().getHotkeyBeans();
+
+        //常用网址
+        friendBeans = homeBeanResponseData.getIncludeNull().getFriendBeans();
+
+        mPresenter.articleList(pageIndex);
+
+    }
 
     @Override
     public void onSuccess2(Optional<ArticleBean> articleResponseData) {
@@ -153,17 +169,10 @@ public class HomeFragment extends BaseMvpFragment<HomePresenter> implements Home
         if (articleBean.getCurPage() == articleBean.getPageCount()) {
             mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
         }
+        if (pageIndex == 0) {
+            datas.addAll(topArticles);
+        }
         datas.addAll(articleBean.getDatas());
         articleAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onSuccess3(Optional<List<HotkeyBean>> hotKeyResponseData) {
-
-    }
-
-    @Override
-    public void onSuccess4(Optional<List<FriendBean>> friendResponseData) {
-
     }
 }

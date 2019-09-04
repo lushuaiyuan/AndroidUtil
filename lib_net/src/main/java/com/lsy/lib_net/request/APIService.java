@@ -78,6 +78,7 @@ public interface APIService {
      *
      * @return
      */
+    @GET("hotkey/json")
     Observable<ResponseData<List<HotkeyBean>>> getHotKeyList();
 
 
@@ -86,7 +87,16 @@ public interface APIService {
      *
      * @return
      */
+    @GET("friend/json")
     Observable<ResponseData<List<FriendBean>>> getFriendList();
+
+    /**
+     * 置顶文章
+     *
+     * @return
+     */
+    @GET("article/top/json")
+    Observable<ResponseData<List<ArticleBean.Article>>> getTopArticLeList();
 
     /**
      * 收藏列表

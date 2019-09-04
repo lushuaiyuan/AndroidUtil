@@ -28,4 +28,7 @@ public class ResponseData<T> {
         return new Optional<>(data);
     }
 
+    public void setData(T data) {
+        this.data = data;
+    }
 }

@@ -26,14 +26,26 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean.Article, BaseVi
                 .setText(R.id.txt_time, item.getNiceDate());
         if (item.isCollect()) {
             ((ImageView) helper.getView(R.id.iv_collect)).setImageResource(R.mipmap.ic_collected);
-        }else{
+        } else {
             ((ImageView) helper.getView(R.id.iv_collect)).setImageResource(R.mipmap.ic_collect);
         }
-        if(item.isFresh()){
-            helper.getView(R.id.txt_tag).setVisibility(View.VISIBLE);
-            helper.setText(R.id.txt_tag, "新");
-        }else{
-            helper.getView(R.id.txt_tag).setVisibility(View.GONE);
+        if (item.getType() == 0) {
+            if (item.isFresh()) {
+                helper.getView(R.id.txt_tag1).setVisibility(View.VISIBLE);
+                helper.setText(R.id.txt_tag1, "新");
+            } else {
+                helper.getView(R.id.txt_tag1).setVisibility(View.GONE);
+            }
+        } else {
+            helper.getView(R.id.txt_tag1).setVisibility(View.VISIBLE);
+            helper.setText(R.id.txt_tag1, "置顶");
+        }
+
+        if (item.getTags().size() > 0) {
+            helper.getView(R.id.txt_tag2).setVisibility(View.VISIBLE);
+            helper.setText(R.id.txt_tag2, item.getTags().get(0).getName());
+        } else {
+            helper.getView(R.id.txt_tag2).setVisibility(View.GONE);
         }
 
     }

@@ -34,4 +34,9 @@ public class HomeModel implements HomeContract.Model {
         return NetWorkManager.getApiService().getFriendList();
     }
 
+    @Override
+    public Observable<ResponseData<List<ArticleBean.Article>>> topArticleList() {
+        return NetWorkManager.getApiService().getTopArticLeList();
+    }
+
 }
