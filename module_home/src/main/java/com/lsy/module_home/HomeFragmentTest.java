@@ -72,7 +72,7 @@ public class HomeFragmentTest extends BaseFragment implements View.OnClickListen
         qmuiTopBarLayout.setTitleGravity(Gravity.LEFT);
         qmuiTopBarLayout.setTitle("收件箱");
         qmuiTopBarLayout.setSubTitle("lsy_itsports@163.com");
-        qmuiTopBarLayout.addLeftImageButton(R.mipmap.icon_list, 0).setOnClickListener(new View.OnClickListener() {
+        qmuiTopBarLayout.addLeftImageButton(R.mipmap.ic_list, 0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mActivity, "侧边栏", Toast.LENGTH_SHORT).show();

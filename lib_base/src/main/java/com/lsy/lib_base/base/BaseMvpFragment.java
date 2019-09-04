@@ -5,9 +5,13 @@ import androidx.lifecycle.Lifecycle;
 import com.lsy.lib_base.exception.ApiException;
 import com.lsy.lib_base.utils.ProgressDialog;
 import com.lsy.lib_base.utils.UIUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
+
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Loading;
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Refreshing;
 
 public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragment implements BaseView {
     protected T mPresenter;
@@ -22,9 +26,11 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
         ProgressDialog.getInstance().dismiss();
     }
 
+
     @Override
     public void onError(Throwable throwable) {
         hideLoading();
+
         if (throwable instanceof ApiException) {
             UIUtils.showToast(((ApiException) throwable).getDisplayMessage());
         } else {
@@ -38,7 +44,6 @@ public abstract class BaseMvpFragment<T extends BasePresenter> extends BaseFragm
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-        super.onDestroyView();
     }
 
 

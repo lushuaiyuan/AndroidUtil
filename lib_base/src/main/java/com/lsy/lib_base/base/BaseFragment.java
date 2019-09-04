@@ -12,10 +12,14 @@ import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.lsy.lib_base.R;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Loading;
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Refreshing;
 
 /**
  * @author lsy
@@ -87,5 +91,14 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
         isPrepareView = false;
+    }
+
+    protected void endRefresh(SmartRefreshLayout mSmartRefreshLayout) {
+        if (mSmartRefreshLayout != null && mSmartRefreshLayout.getState() == Refreshing) {
+            mSmartRefreshLayout.finishRefresh();
+        }
+        if (mSmartRefreshLayout != null && mSmartRefreshLayout.getState() == Loading) {
+            mSmartRefreshLayout.finishLoadMore();
+        }
     }
 }

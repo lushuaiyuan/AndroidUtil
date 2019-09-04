@@ -6,9 +6,13 @@ import com.lsy.lib_base.exception.ApiException;
 import com.lsy.lib_base.utils.ProgressDialog;
 import com.lsy.lib_base.utils.UIUtils;
 import com.qmuiteam.qmui.widget.dialog.QMUITipDialog;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
+
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Loading;
+import static com.scwang.smartrefresh.layout.constant.RefreshState.Refreshing;
 
 public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActivity implements BaseView {
     protected T mPresenter;
@@ -26,9 +30,13 @@ public abstract class BaseMvpActivity<T extends BasePresenter> extends BaseActiv
         ProgressDialog.getInstance().show(this);
     }
 
+
+
     @Override
     public void hideLoading() {
-        ProgressDialog.getInstance().dismiss();
+        if (ProgressDialog.getInstance().isShowing()) {
+            ProgressDialog.getInstance().dismiss();
+        }
     }
 
     @Override

@@ -28,7 +28,7 @@ public class MessageFragment extends BaseFragment {
     private void initTopBar() {
         qmuiTopBarLayout.setTitle("消息");
         qmuiTopBarLayout.setTitleGravity(Gravity.CENTER);
-        qmuiTopBarLayout.addRightImageButton(R.mipmap.icon_search, 0).setOnClickListener(new View.OnClickListener() {
+        qmuiTopBarLayout.addRightImageButton(R.mipmap.ic_search, 0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mActivity, "查询", Toast.LENGTH_SHORT).show();

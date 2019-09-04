@@ -1,7 +1,6 @@
 package com.lsy.module_me;
 
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -43,7 +42,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             qmuiCollapsingTopBarLayout.setTitle("注册/登录>");
             qmuiCollapsingTopBarLayout.setOnClickListener(this);
         }
-        qmuiTopBar.addRightImageButton(R.mipmap.icon_setting, 0).setOnClickListener(new View.OnClickListener() {
+        qmuiTopBar.addRightImageButton(R.mipmap.ic_setting, 0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ARouter.getInstance().build(RouterUtils.ME_SETTING)

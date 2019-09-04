@@ -1,5 +1,6 @@
 package com.lsy.lib_base.base;
 
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.uber.autodispose.AutoDisposeConverter;
 
 public interface BaseView {
@@ -13,6 +14,8 @@ public interface BaseView {
      * 隐藏加载
      */
     void hideLoading();
+
+
 
     /**
      * 数据获取失败

@@ -34,7 +34,9 @@ public class ProgressDialog {
         qmuiTipDialog.show();
 
     }
-
+    public boolean isShowing(){
+        return qmuiTipDialog.isShowing();
+    }
     public void dismiss() {
         qmuiTipDialog.dismiss();
     }

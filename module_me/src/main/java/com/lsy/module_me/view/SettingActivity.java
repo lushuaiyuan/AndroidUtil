@@ -41,6 +41,7 @@ public class SettingActivity extends BaseMvpActivity<SettingPresenter> implement
                 .addAction("确定", new QMUIDialogAction.ActionListener() {
                     @Override
                     public void onClick(final QMUIDialog dialog, int index) {
+                        dialog.dismiss();
                         mPresenter.logOut();
                     }
                 })

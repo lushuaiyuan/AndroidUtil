@@ -10,4 +10,9 @@
     <color name="app_color_theme_8">#AC8FEF</color> <!-- Lavender -->
     <color name="app_color_theme_9">#EE85C1</color> <!-- Pink Rose -->
     <color name="bar_divider">#D4D6D8</color>
+
+    <color name="text_primary">#333333</color>
+    <color name="text_minor">#666666</color>
+    <color name="text_title">#999999</color>
+    <color name="refresh_head_title">#ff666666</color>
 </resources>

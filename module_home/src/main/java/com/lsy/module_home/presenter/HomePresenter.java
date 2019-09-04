@@ -57,7 +57,6 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
         if (!isViewAttached()) {
             return;
         }
-        mView.showLoading();
         model.articleList(pageIndex)
                 .compose(ResponseTransformer.handleResult())
                 .compose(SchedulerProvider.getInstance().applySchedulers())
